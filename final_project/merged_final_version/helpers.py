@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, auc, classification_report, confusion_matrix, roc_curve
 import seaborn as sns
 
-
 # Function for bar plots 
 def BarPlot(column):
     # get value counts for column
@@ -75,3 +74,4 @@ def print_votes_and_prediction(model_votes, threshold):
     # Apply the color to the 'Probability' column
     styled_table = votes_table.style.applymap(lambda val: color_above_threshold(val, threshold), subset=['Probability'])
     display(styled_table)
+
