@@ -3,6 +3,9 @@ from IPython.display import display
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, auc, classification_report, confusion_matrix, roc_curve
 import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve
+
 
 # Function for bar plots 
 def BarPlot(column):
@@ -42,6 +45,17 @@ def evaluate(y_test, y_pred, model_name):
     plt.title(f'{model_name}: Confusion Matrix')
     plt.xlabel('Predicted Labels')
     plt.ylabel('True Labels')
+    plt.show()
+
+def plot_roc_with_cost_ratio(y_test, y_pred_rf, cost_ratio):
+    fpr, tpr, thresholds = roc_curve(y_test, y_pred_rf)
+    plt.plot(fpr, tpr, linewidth=2, label="Random Forest")
+    
+    plt.plot([0, 1], [0, cost_ratio], 'r-', label="Cost Ratio")
+    plt.axis([0, 1, 0, 1])
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.legend(loc="lower right")
     plt.show()
 
 
