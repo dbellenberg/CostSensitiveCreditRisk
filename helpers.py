@@ -70,6 +70,7 @@ def color_above_threshold(val, threshold):
     color = 'green' if val > threshold else 'red'
     return f'color: {color}'
 
+
 def print_votes_and_prediction(model_votes, threshold):
     # Create an empty list to store the rows of the table
     table_rows = []
