@@ -34,13 +34,19 @@ def BarPlot(column):
 # Evaluation function that prints classification report and confusion matrix
 def evaluate(y_test, y_pred, model_name):
     #print accuracy
+    cm = confusion_matrix(y_test, y_pred)
+
+    #ratio of true positive to false positive
+    cm_ratio = cm[1,1]/cm[0,1]
+
     print(f"\033[34m{model_name}\033[0m")
-    print(f" \033[32mAccuracy:\033[0m {round(accuracy_score(y_test, y_pred),3)}")
+    # print(cm[1,1]) in f string true positive
+    print(f'Ratio of true positive to false positive: {cm_ratio:.2f}')
     print()
     print(f" \033[32mClassification Report:\033[0m")
     print(classification_report(y_test, y_pred))
     print(f" \033[32mConfusion Matrix:\033[0m")
-    cm = confusion_matrix(y_test, y_pred)
+    
     sns.heatmap(cm, annot=True, cmap='Blues', fmt='g')
     plt.title(f'{model_name}: Confusion Matrix')
     plt.xlabel('Predicted Labels')
